@@ -157,7 +157,7 @@ void printToken(Token *token)
     }
 }
 
-/* FULL getToken() - EXACT Automaton */
+
 Token *getToken(void)
 {
     Token *token;
@@ -170,9 +170,7 @@ Token *getToken(void)
         switch (state)
         {
 
-        /* -----------------------
-           STATE 0: START
-        ----------------------- */
+        
         case 0:
             if (currentChar == EOF)
             {

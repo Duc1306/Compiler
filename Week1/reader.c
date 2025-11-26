@@ -20,7 +20,7 @@ int readChar(void) {
     // Xử lý xuống dòng
     if (ch == '\n') {
         lineNo++;
-        colNo = 0;      // chuẩn: colNo = 0, để ký tự đầu tiên tiếp theo trở thành colNo = 1
+        colNo = 0;      //  colNo = 0, để ký tự đầu tiên tiếp theo trở thành colNo = 1
     } else {
         colNo++;        // mỗi ký tự đọc vào đều tăng colNo
     }
