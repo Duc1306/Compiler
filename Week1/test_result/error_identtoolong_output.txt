@@ -1,0 +1,2 @@
+1-1:KW_PROGRAM
+Error at 1-9: Identifier too long!
