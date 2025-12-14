@@ -1,0 +1,53 @@
+PROGRAM EX1;
+
+TYPE 
+  T = INTEGER;
+  ROW = ARRAY(.20.) OF T;
+  COL = ARRAY(.20.) OF ROW;
+
+VAR 
+  N : INTEGER;
+  I : INTEGER;
+  J : INTEGER;
+  M : COL;
+  TMP : INTEGER;
+  RESULT : INTEGER;
+
+PROCEDURE INPUT;
+BEGIN
+  N := READI;
+
+  FOR I := 1 TO N DO
+    FOR J := 1 TO N DO
+      M(.I.)(.J.) := READI;
+END;
+
+PROCEDURE CHECKUPPER;
+BEGIN
+  RESULT := 1;
+  I := 1;
+
+  WHILE I <= N DO
+  BEGIN
+    J := 1;
+    WHILE J <= N DO
+    BEGIN
+      TMP := M(.I.)(.J.);
+
+      IF I > J THEN
+        IF TMP != 0 THEN
+          RESULT := 0;
+
+      J := J + 1;
+    END;
+    I := I + 1;
+  END;
+END;
+
+BEGIN
+  CALL INPUT;
+  CALL CHECKUPPER;
+
+  CALL WRITEI(RESULT);
+  CALL WRITELN;
+END.
