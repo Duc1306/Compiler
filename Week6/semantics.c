@@ -90,27 +90,31 @@ Object* checkDeclaredProcedure(char* name) {
   return obj;
 }
 
-Object* checkDeclaredLValueIdent(char* name) { 
+
+Object* checkDeclaredLValueIdent(char* name) {
   Object* obj = lookupObject(name);
   Scope* scope;
 
   if (obj == NULL)
-    error(ERR_UNDECLARED_IDENT,currentToken->lineNo, currentToken->colNo);
+    error(ERR_UNDECLARED_IDENT, currentToken->lineNo, currentToken->colNo);
 
   switch (obj->kind) {
   case OBJ_VARIABLE:
   case OBJ_PARAMETER:
     break;
+
   case OBJ_FUNCTION:
     scope = symtab->currentScope;
-    while ((scope != NULL) && (scope != obj->funcAttrs->scope)) 
+    while ((scope != NULL) && (scope != obj->funcAttrs->scope))
       scope = scope->outer;
 
     if (scope == NULL)
-      error(ERR_INVALID_IDENT,currentToken->lineNo, currentToken->colNo);
+      error(ERR_INVALID_LVALUE, currentToken->lineNo, currentToken->colNo);
     break;
+
   default:
-    error(ERR_INVALID_IDENT,currentToken->lineNo, currentToken->colNo);
+    // CONST / TYPE / PROCEDURE ... đều không phải l-value
+    error(ERR_INVALID_LVALUE, currentToken->lineNo, currentToken->colNo);
   }
 
   return obj;

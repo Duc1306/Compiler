@@ -629,6 +629,10 @@ void compileArgument(Object *param)
   {
     
     type = compileLValue();
+     if (lookAhead->tokenType == SB_PLUS  || lookAhead->tokenType == SB_MINUS ||
+        lookAhead->tokenType == SB_TIMES || lookAhead->tokenType == SB_SLASH) {
+      error(ERR_INVALID_LVALUE, lookAhead->lineNo, lookAhead->colNo);
+    }
     checkTypeEquality(type, param->paramAttrs->type);
   }
 }
